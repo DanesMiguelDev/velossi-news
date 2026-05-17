@@ -102,18 +102,33 @@ velossi/
 
 ### 5.1 Paleta (3 cores)
 
-| Token | Hex | Uso |
+| Token | Hex | OKLCH | Uso |
+|---|---|---|---|
+| `--velossi-ink` | `#0A0A0A` | `oklch(0.07 0 0)` | Texto principal, manchetes, autoridade |
+| `--velossi-paper` | `#FFFFFF` | `oklch(1 0 0)` | Fundos, respiro, espaço em branco |
+| `--velossi-tangerine` | `#E8721E` | `oklch(0.69 0.16 47)` | **PRIMÁRIA**: marca, slogan, categorias, links, "verdade sem filtro" |
+
+**Dark mode**: inverter ink/paper. Tangerina ganha versão luminosa: `--velossi-tangerine-dark: #F58E3F` (`oklch(0.74 0.16 50)`).
+
+**Escala completa da tangerina** (para hover, fundos, badges, estados):
+
+| Stop | Hex | Uso típico |
 |---|---|---|
-| `--velossi-ink` | `#0A0A0A` | Texto principal, manchetes, autoridade |
-| `--velossi-paper` | `#FFFFFF` | Fundos, respiro, espaço em branco |
-| `--velossi-truth` | `#A32D2D` | Acento, categoria, slogan, "verdade sem filtro" |
+| 50 | `#FDF1E8` | Wash muito sutil de fundo |
+| 100 | `#FBDEC2` | Fundo de tag/badge |
+| 200 | `#F7C295` | Hover suave |
+| 400 | `#F09454` | Mid-light |
+| **500** | **`#E8721E`** | ★ **Base da marca** |
+| 600 | `#C75B22` | Hover/active de botão |
+| 700 | `#A04719` | Texto sobre fundo tangerina claro |
+| 800 | `#793612` | Texto deep |
+| 900 | `#52240A` | Deepest |
 
 **Neutros de apoio** (infraestrutura, não contam como "cores da marca"):
+- `--velossi-stone-50` `#FAFAFA`
 - `--velossi-stone-100` `#F5F5F5` (fundos secundários)
 - `--velossi-stone-400` `#9C9C9C` (texto muted)
 - `--velossi-stone-700` `#3F3F3F` (texto secundário)
-
-Dark mode: inverter ink/paper e ajustar truth para `#E24B4A`.
 
 ### 5.2 Tipografia (3 níveis)
 
@@ -168,7 +183,7 @@ Cada artigo: **uma** categoria principal + tags livres.
 [Bloco 1 — Manchete principal]
   Imagem hero 16:9 + categoria + título serif grande + lede + byline
 
-[Bloco 2 — Destaques (grid de 3 colunas)]
+[Bloco 2 — Destaques (grid de 3 colunas — regra do 3)]
   3 cards: imagem 16:10 + categoria + título serif médio + byline
 
 [Bloco 3 — Mais lidas]
@@ -199,7 +214,7 @@ Cada artigo: **uma** categoria principal + tags livres.
     - intertítulos h2 em serif
     - citações com aspas grandes e fonte serif italic
     - imagens com legenda
-    - links em vermelho velossi-truth
+    - links em `--velossi-tangerine`
 
 [Final do artigo]
   Tags
@@ -287,14 +302,13 @@ Cada artigo: **uma** categoria principal + tags livres.
 |---|---|---|
 | Início | Stack Next.js (web) + Flutter (admin/mobile) | SEO inviável em Flutter Web |
 | Início | 5 categorias mantidas | Consolidação em 3 pilares fica para depois |
-| Início | Vermelho `#A32D2D` como acento único | Sobriedade jornalística + força do slogan |
+| Início | Vermelho `#A32D2D` como acento inicial | Sobriedade jornalística + força do slogan |
+| **Atualizado** | **Tangerina Velossi `#E8721E` como cor PRIMÁRIA** | **Preferência do fundador + referência Hermès/Penguin + diferencia de outros sites de notícia que usam vermelho/azul** |
 | Início | Regra do 3 transversal | Numerologia + bom princípio de design |
-| 2026-05-17 | Repositório público no GitHub: `DanesMiguelDev/velossi-news` | Versionamento e memória institucional do projeto |
-| 2026-05-17 | `CLAUDE.md` na raiz importa `@VELOSSI_PROJECT.md` | Calibra automaticamente qualquer agente Claude Code ao abrir o repositório |
-| 2026-05-17 | Seção 13 como memória institucional viva | Decisões importantes documentadas com data e motivo; agente deve atualizar a cada decisão relevante |
+| Atualizado | Grid de destaques em 3 colunas (era 2) | Reforça a regra do 3 na home |
 
 > Adicione novas decisões aqui à medida que o projeto evoluir.
 
 ---
 
-**Última atualização:** 2026-05-17 — repositório criado, CLAUDE.md configurado, fluxo de memória institucional estabelecido.
+**Última atualização:** versão inicial do briefing, gerada antes do primeiro commit de código.
