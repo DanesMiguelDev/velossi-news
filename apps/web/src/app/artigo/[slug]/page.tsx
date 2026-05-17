@@ -2,22 +2,25 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  allArticles,
+  getAllSlugs,
   getArticleBySlug,
-  getArticlesByCategory,
+  getRelatedArticles,
   categoryToSlug,
 } from "@/lib/articles";
 import ArticleCard from "@/components/ArticleCard";
 
+export const revalidate = 60;
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return allArticles.map((a) => ({ slug: a.slug }));
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return {};
 
   return {
@@ -40,12 +43,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) notFound();
 
-  const related = getArticlesByCategory(article.category)
-    .filter((a) => a.slug !== article.slug)
-    .slice(0, 3); // regra do 3
+  const related = await getRelatedArticles(article.category, article.slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,9 +99,7 @@ export default async function ArticlePage({ params }: Props) {
               </p>
               <p className="velossi-meta">
                 {article.timeAgo}
-                {article.readingTime && (
-                  <> · {article.readingTime} de leitura</>
-                )}
+                {article.readingTime && <> · {article.readingTime} de leitura</>}
               </p>
             </div>
           </div>
@@ -152,7 +151,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </div>
 
-        {/* ── ARTIGOS RELACIONADOS (3 — REGRA DO 3) ── */}
+        {/* ── RELACIONADOS (3 — REGRA DO 3) ── */}
         {related.length > 0 && (
           <section className="container mx-auto px-6 py-24 max-w-6xl border-t border-velossi-stone-100 mt-24">
             <h2 className="velossi-section-title mb-6">Leia também</h2>

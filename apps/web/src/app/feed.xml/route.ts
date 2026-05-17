@@ -1,24 +1,21 @@
-import { allArticles } from "@/lib/articles";
+import { getAllArticles } from "@/lib/articles";
 
 const BASE_URL = "https://velossinews.com.br";
 
 export async function GET() {
-  const items = allArticles
-    .sort((a, b) => {
-      const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-      const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-      return dateB - dateA;
-    })
+  const articles = await getAllArticles();
+
+  const items = articles
     .map(
-      (article) => `
+      (a) => `
     <item>
-      <title><![CDATA[${article.title}]]></title>
-      <link>${BASE_URL}/artigo/${article.slug}</link>
-      <guid>${BASE_URL}/artigo/${article.slug}</guid>
-      <description><![CDATA[${article.lede ?? ""}]]></description>
-      <author>${article.author ?? "Redação Velossi"}</author>
-      <category>${article.category}</category>
-      ${article.publishedAt ? `<pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>` : ""}
+      <title><![CDATA[${a.title}]]></title>
+      <link>${BASE_URL}/artigo/${a.slug}</link>
+      <guid>${BASE_URL}/artigo/${a.slug}</guid>
+      <description><![CDATA[${a.lede ?? ""}]]></description>
+      <author>${a.author ?? "Redação Velossi"}</author>
+      <category>${a.category}</category>
+      ${a.publishedAt ? `<pubDate>${new Date(a.publishedAt).toUTCString()}</pubDate>` : ""}
     </item>`
     )
     .join("");
