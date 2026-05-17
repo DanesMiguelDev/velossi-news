@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* ============================================
+   VELOSSI NEWS — DESIGN TOKENS
+   ============================================
+   Tudo derivado do briefing oficial (VELOSSI_PROJECT.md §5).
+   Princípio: regra do 3 — espaçamentos, paleta, tipografia.
+   ============================================ */
+
+@theme {
+  /* --- Cores da marca (3 principais) --- */
+  --color-velossi-ink:        #0A0A0A;
+  --color-velossi-paper:      #FFFFFF;
+  --color-velossi-tangerine:  #E8721E;
+
+  /* --- Escala completa da tangerina --- */
+  --color-velossi-tangerine-50:   #FDF1E8;
+  --color-velossi-tangerine-100:  #FBDEC2;
+  --color-velossi-tangerine-200:  #F7C295;
+  --color-velossi-tangerine-400:  #F09454;
+  --color-velossi-tangerine-500:  #E8721E;
+  --color-velossi-tangerine-600:  #C75B22;
+  --color-velossi-tangerine-700:  #A04719;
+  --color-velossi-tangerine-800:  #793612;
+  --color-velossi-tangerine-900:  #52240A;
+
+  /* --- Neutros de apoio --- */
+  --color-velossi-stone-50:   #FAFAFA;
+  --color-velossi-stone-100:  #F5F5F5;
+  --color-velossi-stone-400:  #9C9C9C;
+  --color-velossi-stone-700:  #3F3F3F;
+
+  /* --- Tipografia (3 níveis) --- */
+  --font-serif: var(--font-serif-google), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans:  var(--font-sans-google), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    --color-velossi-ink:       #FAFAFA;
+    --color-velossi-paper:     #0A0A0A;
+    --color-velossi-tangerine: #F58E3F;
+    color-scheme: dark;
+  }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-velossi-paper);
+    color: var(--color-velossi-ink);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--color-velossi-ink);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--color-velossi-tangerine);
+    color: var(--color-velossi-paper);
+  }
+}
+
+/* ============================================
+   UTILITÁRIOS DE MARCA
+   ============================================ */
+
+@layer components {
+  /* Kicker = nome da categoria em cima da manchete */
+  .velossi-kicker {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--color-velossi-tangerine);
+    display: inline-block;
+    line-height: 1;
+  }
+
+  /* Byline / data */
+  .velossi-meta {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-velossi-stone-400);
+    line-height: 1.4;
+  }
+
+  /* Slogan em serif itálico tangerina */
+  .velossi-slogan {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-velossi-tangerine);
+  }
+
+  /* Título de seção com underline preto */
+  .velossi-section-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 2px solid var(--color-velossi-ink);
+    padding-bottom: 6px;
+    display: inline-block;
+    line-height: 1.2;
+  }
+
+  /* ── TIPOGRAFIA EDITORIAL DO CORPO DO ARTIGO ── */
+  .article-body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-velossi-ink);
+  }
+
+  .article-body p { margin-bottom: 24px; }
+
+  .article-body h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 48px;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .article-body blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    border-left: 3px solid var(--color-velossi-tangerine);
+    padding-left: 24px;
+    margin: 48px 0;
+    color: var(--color-velossi-stone-700);
+  }
+
+  .article-body a {
+    color: var(--color-velossi-tangerine);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-body a:hover { color: var(--color-velossi-tangerine-600); }
+
+  .article-body img {
+    width: 100%;
+    border-radius: 6px;
+    margin: 24px 0 12px;
+  }
+
+  .article-body figcaption {
+    font-size: 12px;
+    color: var(--color-velossi-stone-400);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+}
