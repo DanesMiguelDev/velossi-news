@@ -289,9 +289,12 @@ Cada artigo: **uma** categoria principal + tags livres.
 | Início | 5 categorias mantidas | Consolidação em 3 pilares fica para depois |
 | Início | Vermelho `#A32D2D` como acento único | Sobriedade jornalística + força do slogan |
 | Início | Regra do 3 transversal | Numerologia + bom princípio de design |
+| 2026-05-17 | Repositório público no GitHub: `DanesMiguelDev/velossi-news` | Versionamento e memória institucional do projeto |
+| 2026-05-17 | `CLAUDE.md` na raiz importa `@VELOSSI_PROJECT.md` | Calibra automaticamente qualquer agente Claude Code ao abrir o repositório |
+| 2026-05-17 | Seção 13 como memória institucional viva | Decisões importantes documentadas com data e motivo; agente deve atualizar a cada decisão relevante |
 
 > Adicione novas decisões aqui à medida que o projeto evoluir.
 
 ---
 
-**Última atualização:** versão inicial do briefing, gerada antes do primeiro commit de código.
+**Última atualização:** 2026-05-17 — repositório criado, CLAUDE.md configurado, fluxo de memória institucional estabelecido.
